@@ -16,5 +16,6 @@ public class Main {
             System.out.println("Changing: "+row+" - "+col);
             myMap.change_cell(row,col);
         }
+        myMap.display_on_out();
     }
 }

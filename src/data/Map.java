@@ -16,10 +16,9 @@ public class Map {
     }
 
     private void swap(int x, int z){
-        if (--x>0 && --z>0){
-
+        if ((z-1>0) && (x<dimX && z<dimZ)){
+            blocks[x][z]=blocks[x][z-1];
         }
-
     }
 
 
