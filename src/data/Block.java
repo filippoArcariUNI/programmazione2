@@ -4,7 +4,6 @@ public class Block {
     private char contenuto;
     private boolean falls_with_gravity;
     private boolean fall_through;
-    private static final  int nlettere=((int)'Z'-(int)'A');
 
     public Block(){
         this.contenuto = '.';
@@ -16,12 +15,7 @@ public class Block {
         this.fall_through=false;
         this.falls_with_gravity=true;
     }
-    public Block (boolean random){
-        this.contenuto=(char)(((Math.random()*10)%nlettere)+'A');
-        this.fall_through=false;
-        this.falls_with_gravity=true;
-    }
-    public char isContent() {
+    public char display() {
         return this.contenuto;
     }
     public boolean isFalls_with_gravity() {
