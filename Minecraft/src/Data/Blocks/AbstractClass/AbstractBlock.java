@@ -8,7 +8,11 @@ public abstract class AbstractBlock implements Block {
     protected boolean fall_through;
     protected String blockName;
 
-    public char isContent() {
+    protected boolean pickable;
+
+
+
+    public char getContent() {
         return this.content;
     }
     public boolean isFalls_with_gravity() {
@@ -19,5 +23,13 @@ public abstract class AbstractBlock implements Block {
     }
     public String toString(){
         return "\ncontenuto"+ this.content +"\nGravità " +this.falls_with_gravity + "\nAttraversa " +this.fall_through;
+    }
+    @Override
+    public String display_in_inventory() {
+        return "[" + blockName + "]";
+    }
+
+    public boolean isPickable() {
+        return pickable;
     }
 }

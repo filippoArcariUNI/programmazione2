@@ -101,7 +101,7 @@ public class Map {
     public void display_on_out(){
         for (int i=0; i<dimZ;i++){
             for (int j=0;j<dimX;j++){
-                char ciao = blocks[i][j].isContent();
+                char ciao = blocks[i][j].getContent();
                 System.out.print(ciao);
             }
             System.out.print("\n");

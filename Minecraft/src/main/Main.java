@@ -10,6 +10,9 @@ public class Main {
         System.out.println("---- Furnace ----");
         m.displayFurnace();
         System.out.println("-----------------");
+        System.out.println("--- Inventario --");
+        m.displayInventory(); System.out.println();
+        System.out.println("-----------------");
 
         for (int i = 0 ; i < 2 ; i++){
             System.out.print("Enter row and then column,or enter '9' and then '9' for smelting: ");
@@ -25,6 +28,12 @@ public class Main {
             System.out.println("---- Furnace ----");
             m.displayFurnace();
             System.out.println("-----------------");
+            System.out.println("--- Inventario --");
+            m.displayInventory(); System.out.println();
+            System.out.println("-----------------");
+            //2.1
+
         }
+
     }
 }

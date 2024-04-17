@@ -7,20 +7,25 @@ public class MainvView{
     private Map myMap;
     private Furnace myFurnace;
 
+    private Inventroy myInventory;
+
     public void displayFurnace(){
         myFurnace.display_on_out();
     }
     public void display_on_out(){
         myMap.display_on_out();
     }
+
+    public void displayInventory() {myInventory.display_on_out();}
     public void smelt(){
         myFurnace.smelt();
         Block b= myFurnace.is_output();
-        //myMap.insert_at_coords();
+        myInventory.add_block(b);
     }
     public MainvView(){
         myMap=new Map();
         myFurnace=new Furnace();
+        myInventory=new Inventroy();
     }
     public void move_into_furnace(Location pos){
         int z=pos.isZ();
