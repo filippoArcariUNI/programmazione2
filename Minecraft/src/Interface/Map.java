@@ -1,8 +1,11 @@
 package Interface;
 import Data.BlockFactory;
 import Data.Blocks.*;
+import Data.Blocks.BlockExteptions.BlockErrorException;
 import Data.Blocks.Interfaces.Block;
+import Data.Blocks.Interfaces.DestroyedByTorch;
 import Data.Blocks.Interfaces.SmeltableBlocks;
+import Interface.Exteptions.WrongCoordinatesException;
 
 
 public class Map {
@@ -11,20 +14,20 @@ public class Map {
     private final int dimZ=Location.dimZ;
     private final int dimX=Location.dimX;
 
-    public Block getBlock(Location pos) {
-        return blocks[pos.isZ()][pos.isX()];
+    public Block getBlock(Location pos){
+        return blocks[pos.getZ()][pos.getX()];
     }
 
 
-    public Map(){
+    public Map() throws WrongCoordinatesException{
         blocks=new Block[dimZ][dimX];
         for (int i = 0; i < dimZ; i++) {
             for (int j = 0; j < dimX; j++) {
                 blocks[i][j]= bf.air_block();
             }
         }
-        addRiver();
         fillMap();
+        addRiver();
 
     }
     private void fillMap(){
@@ -39,33 +42,52 @@ public class Map {
                 }else{
                     current= bf.raw_iron_block();
                 }
-                insert_at_coords(new Location(0,j), current);
+                try {
+                    insert_at_coords(new Location(0,j), current);
+                } catch (WrongCoordinatesException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
     private void swap(Location pos){
-        int z=pos.isZ();
-        int x=pos.isX();
-        if (pos.inBounds()&& z+1<dimZ){
+        int z=pos.getZ();
+        int x=pos.getX();
+        if (z+1<dimZ){
             Block t=blocks[z][x];
             blocks[z][x]=blocks[z+1][x];
             blocks[z+1][x]=t;
 
         }
+
     }
-    private void insert_iter(Location pos){
-        int z=pos.isZ();
-        int x=pos.isX();
-        if (blocks[z][x].isFalls_with_gravity()) {
-            while (z+1 < dimZ && blocks[z + 1][x].isFall_through() ) {
+
+    private void applyGravity(Location pos) throws WrongCoordinatesException {
+        for (int i = pos.getZ(); i >0 ; i--) {
+            Location upperLocation = new Location(i-1,pos.getX());
+            if (getBlock(pos) instanceof DestroyedByTorch){
+                insert_at_coords(upperLocation,new AirBlock());
+            }
+            if(getBlock(upperLocation).isFalls_with_gravity()){
+                swap(upperLocation);
+            }
+        }
+    }
+    private void insert_iter(Location pos) throws WrongCoordinatesException{
+        int z=pos.getZ();
+        int x=pos.getX();
+        if (getBlock(pos).isFalls_with_gravity()) {
+            while (z+1 < dimZ && blocks[z + 1][x].isFall_through()) {
                 swap(new Location(z,x));
                 z++;
             }
         }
+        applyGravity(pos);
+
     }
-    private void insert_rec(Location pos){
-        int z=pos.isZ();
-        int x=pos.isX();
+    private void insert_rec(Location pos) throws WrongCoordinatesException{
+        int z=pos.getZ();
+        int x=pos.getX();
         if (z<dimZ-1){
             if (!blocks[z+1][x].isFall_through()){
                 return;
@@ -76,24 +98,25 @@ public class Map {
                 }
             }
         }
+
+
     }
-    public  void  addRiver(){
+    public  void  addRiver() throws WrongCoordinatesException{
         addRowsOfWater(1);
     }
-    public  void  addSea(){
+    public  void  addSea() throws WrongCoordinatesException{
         addRowsOfWater(3);
     }
-    private  void  addRowsOfWater(int rowsOfWater){
+    private  void  addRowsOfWater(int rowsOfWater) throws WrongCoordinatesException{
         for (int i = 0; i < rowsOfWater; i++) {
             for (int j = 0; j < dimX; j++) {
                 insert_at_coords(new Location(0,j),new WaterBlock());
             }
-
         }
     }
-    public  void insert_at_coords(Location pos, Block b ){
-        int z=pos.isZ();
-        int x=pos.isX();
+    public  void insert_at_coords(Location pos, Block b )throws WrongCoordinatesException{
+        int z=pos.getZ();
+        int x=pos.getX();
         blocks[z][x]=b;
         insert_iter(new Location(z,x));
     }
@@ -109,25 +132,33 @@ public class Map {
     }
 
 
-    protected boolean isSmeltable(Location pos){
-        int z=pos.isZ();
-        int x=pos.isX();
-
-        if(pos.inBounds()){
-            return blocks[z][x] instanceof SmeltableBlocks;
-        }else{
-            return false;
-        }
+    private boolean isSmeltable(Location pos) throws WrongCoordinatesException{
+        int z=pos.getZ();
+        int x=pos.getX();
+        return blocks[z][x] instanceof SmeltableBlocks;
     }
 
-    protected Block smelter(Location pos){
-        int z=pos.isZ();
-        int x=pos.isX();
+    protected Block smelter(Location pos) throws WrongCoordinatesException {
+        int z=pos.getZ();
+        int x=pos.getX();
         if(isSmeltable(pos)){
            return ((SmeltableBlocks)blocks[z][x]).smelt();
         }else{
             return new NullBlock();
         }
+    }
+    private boolean is_pickable(Location l)throws BlockErrorException{
+        return getBlock(l).isPickable();
+    }
+    public Block gimme_pickable(Location l){
+        try{
+            if (is_pickable(l)){
+                return getBlock(l);
+            }
+        }catch (BlockErrorException e) {
+            System.out.println(e.toString());
+        }
+        return new NullBlock();
     }
 
 }

@@ -1,5 +1,4 @@
 package Data.Blocks.AbstractClass;
-
 import Data.Blocks.Interfaces.Block;
 
 public abstract class AbstractBlock implements Block {
@@ -11,7 +10,9 @@ public abstract class AbstractBlock implements Block {
     protected boolean pickable;
 
 
-
+    public AbstractBlock(){
+        pickable=false;
+    }
     public char getContent() {
         return this.content;
     }
@@ -21,6 +22,15 @@ public abstract class AbstractBlock implements Block {
     public boolean isFall_through() {
         return this.fall_through;
     }
+    public boolean isPickable() {
+        return pickable;
+    }
+
+    @Override
+    public String getBlockName() {
+        return this.blockName;
+    }
+
     public String toString(){
         return "\ncontenuto"+ this.content +"\nGravità " +this.falls_with_gravity + "\nAttraversa " +this.fall_through;
     }
@@ -29,7 +39,5 @@ public abstract class AbstractBlock implements Block {
         return "[" + blockName + "]";
     }
 
-    public boolean isPickable() {
-        return pickable;
-    }
+
 }

@@ -29,4 +29,5 @@ public class BlockFactory {
         return new WaterBlock();
     }
 
+    public TorchBlock torchBlock(){return  new TorchBlock();}
 }

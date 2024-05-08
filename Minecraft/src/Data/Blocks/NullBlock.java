@@ -6,6 +6,8 @@ import Data.Blocks.Interfaces.SmeltableBlocks;
 
 public class NullBlock extends AbstractSolidBlock implements SmeltableBlocks {
     public NullBlock(){
+        super();
+        pickable=false;
         fall_through=false;
         falls_with_gravity=false;
         content ='N';

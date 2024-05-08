@@ -1,10 +1,11 @@
 package Data.Blocks;
 
 import Data.Blocks.AbstractClass.AbstractBlock;
+import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
 import Data.Blocks.Interfaces.SmeltableBlocks;
 
-public class RawIronBlock extends AbstractBlock implements SmeltableBlocks {
+public class RawIronBlock extends AbstractSolidBlock implements SmeltableBlocks {
     public RawIronBlock(){
         super();
         content ='i';

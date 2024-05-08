@@ -23,18 +23,20 @@ public class Furnace extends AbstractSolidBlock {
     }
 
     public void  display_on_out(){
-        System.out.println("|| "
-            +this.input.getContent()
-            +" --> "
-            +this.out.getContent()
-            +" ||");
+        System.out.println(STR."|| \{this.input.getContent()} --> \{this.out.getContent()} ||");
     }
     public void smelt(){
         this.out=this.input.smelt();
         this.input=bf.null_block();
     }
-    public void  setInput(SmeltableBlocks b){
+    public void setInput(SmeltableBlocks b){
         this.input=b;
         this.out=b.smelt();
     }
+    public Block getInput(){
+        Block t=this.input;
+        this.input=new NullBlock();
+        return t;
+    }
+
 }
