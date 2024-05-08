@@ -1,24 +1,21 @@
 package main;
 import Interface.*;
 import Interface.Exteptions.WrongCoordinatesException;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 import java.util.Scanner;
 
-
-
-public class Main {
-
-    public static void printStatus(MainvView m){
-        m.display_on_out();
-        System.out.println("---- Furnace ----");
-        m.displayFurnace();
-        System.out.println("-----------------");
-        System.out.println("--- Inventario --");
-        m.displayInventory(); System.out.println();
-        System.out.println("-----------------");
+public class Main extends Application {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("cia");
+        primaryStage.show();
     }
+
     public static void main(String[] args) {
-        MainvView m= new MainvView();
+        launch(args);
+       /* MainvView m= new MainvView();
 
         printStatus(m);
         m.display_on_out();
@@ -53,6 +50,15 @@ public class Main {
             }
             printStatus(m);
         }
-        // 5
+    */
+    }
+    public static void printStatus(MainvView m){
+        m.display_on_out();
+        System.out.println("---- Furnace ----");
+        m.displayFurnace();
+        System.out.println("-----------------");
+        System.out.println("--- Inventario --");
+        m.displayInventory(); System.out.println();
+        System.out.println("-----------------");
     }
 }

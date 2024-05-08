@@ -5,6 +5,7 @@ import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
 import Data.Blocks.Interfaces.SmeltableBlocks;
 
+
 public class Furnace extends AbstractSolidBlock {
 
     private SmeltableBlocks input;
@@ -23,7 +24,7 @@ public class Furnace extends AbstractSolidBlock {
     }
 
     public void  display_on_out(){
-        System.out.println(STR."|| \{this.input.getContent()} --> \{this.out.getContent()} ||");
+        System.out.println("|| " + this.input.getContent() +"--> "+ this.out.getContent() +"||");
     }
     public void smelt(){
         this.out=this.input.smelt();
