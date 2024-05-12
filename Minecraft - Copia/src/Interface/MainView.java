@@ -5,7 +5,7 @@ import Data.Blocks.Interfaces.Block;
 import Data.Blocks.Interfaces.SmeltableBlocks;
 import Interface.Exteptions.WrongCoordinatesException;
 
-public class MainvView{
+public class MainView {
     private Map myMap;
     private Furnace myFurnace;
 
@@ -18,13 +18,25 @@ public class MainvView{
         myMap.display_on_out();
     }
 
+    public Furnace getMyFurnace() {
+        return myFurnace;
+    }
+
+    public Inventory getMyInventory() {
+        return myInventory;
+    }
+
+    public Map getMyMap() {
+        return myMap;
+    }
+
     public void displayInventory() {myInventory.display_on_out();}
     public void smelt(){
         myFurnace.smelt();
         Block b= myFurnace.is_output();
         myInventory.add_block(b);
     }
-    public MainvView(){
+    public MainView(){
         try {
             myMap=new Map();
             myFurnace=new Furnace();
