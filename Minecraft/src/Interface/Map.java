@@ -62,6 +62,8 @@ public class Map {
 
     }
 
+
+
     private void applyGravity(Location pos) throws WrongCoordinatesException {
         for (int i = pos.getZ(); i >0 ; i--) {
             Location upperLocation = new Location(i-1,pos.getX());
