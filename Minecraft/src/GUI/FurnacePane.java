@@ -7,8 +7,17 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 public class FurnacePane extends VBox {
-    BlockPane inp;
-    BlockPane out;
+    private BlockPane inp;
+
+    public BlockPane getInp() {
+        return inp;
+    }
+
+    public BlockPane getOut() {
+        return out;
+    }
+
+    private BlockPane out;
     public FurnacePane(SmeltableBlocks inpt){
         Text intro = new Text("Furnace");
         Text to = new Text("-->");
@@ -20,5 +29,13 @@ public class FurnacePane extends VBox {
         super.getChildren().addAll(intro,inp,to,out);
         super.setAlignment(Pos.CENTER);
 
+    }
+
+    public void setInp(BlockPane inp) {
+        this.inp = inp;
+    }
+
+    public void setOut(BlockPane out) {
+        this.out = out;
     }
 }

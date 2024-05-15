@@ -33,7 +33,7 @@ public class MainView {
     public void displayInventory() {myInventory.display_on_out();}
     public void smelt(){
         myFurnace.smelt();
-        Block b= myFurnace.is_output();
+        Block b= myFurnace.getOut();
         myInventory.add_block(b);
     }
     public MainView(){

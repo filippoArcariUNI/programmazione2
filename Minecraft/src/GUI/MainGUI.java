@@ -1,12 +1,15 @@
 package GUI;
 
 import Data.Blocks.NullBlock;
+import GUI.Controller.MainSimpleController;
+import Interface.MainView;
 import javafx.scene.layout.BorderPane;
 
 public class MainGUI extends BorderPane {
     private MapPane mappa;
     private ButtonListPane buttons;
     private FurnacePane furnace;
+    private MainSimpleController mainController;
 
     public FurnacePane getFurnace() {
         return furnace;
@@ -36,10 +39,12 @@ public class MainGUI extends BorderPane {
         public MainGUI(){
             super();
            this.mappa = new MapPane(false);
+           this.mappa.setMaxWidth(300);
            this.buttons = new ButtonListPane(this);
            this.furnace = new FurnacePane(new NullBlock());
+           this.mainController = new MainSimpleController(new MainView());
            super.setLeft(buttons);
            super.setCenter(mappa);
-           super.setRight(furnace);
+           super.setLeft(furnace);
         }
 }

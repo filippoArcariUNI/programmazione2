@@ -36,7 +36,8 @@ public class  Main extends Application {
         Stage window = new Stage();
         window.setScene(visualization);
         window.show();
-
+//        Lab 5  -> https://didatticaonline.unitn.it/dol/pluginfile.php/1810388/mod_resource/content/1/mc%235.txt
+//        1.6
     }
     public static void main(String[] args) {
         launch(args);

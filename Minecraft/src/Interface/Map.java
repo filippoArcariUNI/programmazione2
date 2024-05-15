@@ -19,7 +19,7 @@ public class Map {
     }
 
 
-    public Map() throws WrongCoordinatesException{
+    public Map(){
         blocks=new Block[dimZ][dimX];
         for (int i = 0; i < dimZ; i++) {
             for (int j = 0; j < dimX; j++) {
@@ -27,7 +27,11 @@ public class Map {
             }
         }
         fillMap();
-        addRiver();
+        try {
+            addRiver();
+        } catch (WrongCoordinatesException e) {
+            throw new RuntimeException(e);
+        }
 
     }
     private void fillMap(){

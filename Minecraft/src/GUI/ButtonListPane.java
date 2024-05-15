@@ -2,6 +2,7 @@ package GUI;
 
 import Data.BlockFactory;
 import Data.Blocks.SandBlock;
+import GUI.Controller.MainSimpleController;
 import Interface.Location;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import java.util.Random;
 public class ButtonListPane extends VBox{
     private MainGUI mg;
     private Button btn;
+    MainSimpleController controlerMain;
     public ButtonListPane(MainGUI m){
         this.mg = m;
         testButton();

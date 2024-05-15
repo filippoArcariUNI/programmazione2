@@ -7,7 +7,7 @@ import Data.Blocks.NullBlock;
 import Data.Order.AlphabeticOrder;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Iterator;
 
 public class Inventory {
     private ArrayList<Block> inventario = new ArrayList<>();
@@ -42,5 +42,8 @@ public class Inventory {
     public void  removeItem(int itemIndex){
         inventario.remove(itemIndex);
         this.inventario.sort(new AlphabeticOrder());
+    }
+    public Iterator<Block> blockIterator(){
+        return inventario.listIterator();
     }
 }

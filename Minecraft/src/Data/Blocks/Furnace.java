@@ -19,7 +19,7 @@ public class Furnace extends AbstractSolidBlock {
         input= new NullBlock();
         out=new NullBlock();
     }
-    public Block is_output(){
+    public Block getOut(){
         return this.out;
     }
 
