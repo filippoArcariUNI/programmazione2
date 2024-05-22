@@ -1,11 +1,11 @@
-package GUI;
+package GUI.Visual;
 
 import Data.Blocks.AirBlock;
 import Data.Blocks.Interfaces.Block;
-import Interface.Exteptions.WrongCoordinatesException;
-import Interface.Location;
-import Interface.MainView;
-import Interface.Map;
+import Data.Exceptions.WrongCoordinatesException;
+import Data.Location;
+import GUI.Model.MainView;
+import GUI.Model.Map;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;

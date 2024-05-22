@@ -1,16 +1,16 @@
 package GUI.Controller;
 
 import Data.Blocks.Interfaces.Block;
-import GUI.BlockPane;
-import GUI.MapPane;
-import Interface.Location;
-import Interface.Map;
+import GUI.Visual.BlockPane;
+import GUI.Visual.MapPane;
+import Data.Location;
+import GUI.Model.Map;
 
 public class MapSimpleController implements SimpleController{
     MapPane mp;
     Map m;
-    public MapSimpleController(Map map){
-        mp= new MapPane();
+    public MapSimpleController(Map map,MapPane mapPane){
+        mp = mapPane;
         m=map;
         redraw();
     }

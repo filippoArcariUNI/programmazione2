@@ -22,10 +22,7 @@ public abstract class AbstractBlock implements Block {
     public boolean isFall_through() {
         return this.fall_through;
     }
-    public boolean isPickable() {
-        return pickable;
-    }
-
+    public boolean isPickable() {return pickable;}
     @Override
     public String getBlockName() {
         return this.blockName;

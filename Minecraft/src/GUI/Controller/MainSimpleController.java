@@ -1,9 +1,9 @@
 package GUI.Controller;
 
+import Data.Blocks.Interfaces.Block;
 import GUI.MainGUI;
-import Interface.Location;
-import Interface.MainView;
-
+import Data.Location;
+import GUI.Model.MainView;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -16,11 +16,11 @@ public class MainSimpleController implements SimpleController{
     InventorySimpleController ic;
     public MainSimpleController(MainView mainView){
         mv = mainView;
-        mg = new MainGUI();
+        mg = new MainGUI(this);
         lstController = new ArrayList<>();
-        ic = new InventorySimpleController(mainView.getMyInventory());
-        mc = new MapSimpleController(mainView.getMyMap());
-        fc = new FurnaceSimpleController(mainView.getMyFurnace());
+        ic = new InventorySimpleController(mainView.getMyInventory(),mg.getInvetory());
+        mc = new MapSimpleController(mainView.getMyMap(),mg.getMappa());
+        fc = new FurnaceSimpleController(mainView.getMyFurnace(),mg.getFurnace());
 
         lstController.add(ic);
         lstController.add(mc);
@@ -28,29 +28,71 @@ public class MainSimpleController implements SimpleController{
     }
     @Override
     public void redraw() {
-        lstController.forEach(SimpleController::redraw);
+       for(SimpleController controller : this.lstController){
+            controller.redraw();
+       }
     }
     public void smelt(){
-        mv.getMyFurnace().smelt();
-        fc.redraw();
+        mv.smelt();
+        this.redraw();
     }
 
     public void move_into_inventory_from_furnace(){
         mv.move_into_inventory_from_furnace();
-        fc.redraw();
-        ic.redraw();
+        this.redraw();
     }
     public void move_into_furnace_from_inventory(){
         mv.move_into_furnace_from_inventory(0);
-        fc.redraw();
-        ic.redraw();
+        this.redraw();
     }
-    public void pick_up_block(){
-        mv.pick_up_block(new Location(0,0));
-        ic.redraw();
-        mc.redraw();
-    }public void toggle_inventory_comparator(){
-        mv.toggle_inventory_comparator();
-        ic.redraw();
+    public void pick_up_block(Location l){
+        mv.pick_up_block(l);
+        this.redraw();
+
     }
+    public void toggle_inventory_comparator(boolean selector){
+        mv.toggle_inventory_comparator(selector);
+        this.redraw();
+    }
+
+    public void randomBlock(Location l , Block b){
+        mv.insertRandomBlock(l,b);
+        this.redraw();
+    }
+
+
+    public MainView getMv() {
+        return mv;
+    }
+
+    public void setMv(MainView mv) {
+        this.mv = mv;
+    }
+
+    public MainGUI getMg() {
+        return mg;
+    }
+
+    public void setMg(MainGUI mg) {
+        this.mg = mg;
+    }
+
+    public Collection<SimpleController> getLstController() {
+        return lstController;
+    }
+
+    public FurnaceSimpleController getFc() {
+        return fc;
+    }
+
+
+
+    public MapSimpleController getMc() {
+        return mc;
+    }
+
+    public InventorySimpleController getIc() {
+        return ic;
+    }
+
 }

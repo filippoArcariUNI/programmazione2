@@ -1,17 +1,18 @@
-package Interface;
+package GUI.Model;
 import Data.BlockFactory;
 import Data.Blocks.*;
 import Data.Blocks.BlockExteptions.BlockErrorException;
 import Data.Blocks.Interfaces.Block;
 import Data.Blocks.Interfaces.DestroyedByTorch;
 import Data.Blocks.Interfaces.SmeltableBlocks;
-import Interface.Exteptions.WrongCoordinatesException;
+import Data.Exceptions.WrongCoordinatesException;
+import Data.Location;
 
 
 public class Map {
     private Block[][] blocks;
     BlockFactory bf =new BlockFactory();
-    private final int dimZ=Location.dimZ;
+    private final int dimZ= Location.dimZ;
     private final int dimX=Location.dimX;
 
     public Block getBlock(Location pos){
@@ -124,17 +125,6 @@ public class Map {
         blocks[z][x]=b;
         insert_iter(new Location(z,x));
     }
-
-    public void display_on_out(){
-        for (int i=0; i<dimZ;i++){
-            for (int j=0;j<dimX;j++){
-                char ciao = blocks[i][j].getContent();
-                System.out.print(ciao);
-            }
-            System.out.print("\n");
-        }
-    }
-
 
     private boolean isSmeltable(Location pos) throws WrongCoordinatesException{
         int z=pos.getZ();

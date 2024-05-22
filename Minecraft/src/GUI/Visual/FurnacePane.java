@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Visual;
 
 import Data.Blocks.Interfaces.SmeltableBlocks;
 import javafx.geometry.Pos;

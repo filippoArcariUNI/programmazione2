@@ -1,4 +1,4 @@
-package Interface.Exteptions;
+package Data.Exceptions;
 
 public class WrongCoordinatesException extends Exception{
     public WrongCoordinatesException(){

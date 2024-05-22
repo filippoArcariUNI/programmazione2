@@ -1,9 +1,10 @@
-package Data.Blocks;
+package GUI.Model;
 
 import Data.BlockFactory;
 import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
 import Data.Blocks.Interfaces.SmeltableBlocks;
+import Data.Blocks.NullBlock;
 
 
 public class Furnace extends AbstractSolidBlock {
@@ -23,21 +24,18 @@ public class Furnace extends AbstractSolidBlock {
         return this.out;
     }
 
-    public void  display_on_out(){
-        System.out.println("|| " + this.input.getContent() +"--> "+ this.out.getContent() +"||");
-    }
+//    public void  display_on_out(){
+//        System.out.println("|| " + this.input.getContent() +"--> "+ this.out.getContent() +"||");
+//    }
     public void smelt(){
         this.out=this.input.smelt();
         this.input=bf.null_block();
     }
-    public void setInput(SmeltableBlocks b){
-        this.input=b;
-        this.out=b.smelt();
-    }
-    public Block getInput(){
-        Block t=this.input;
-        this.input=new NullBlock();
+    public void setInput(SmeltableBlocks b){this.input=b;}
+    public SmeltableBlocks getInput(){
+        SmeltableBlocks t=this.input;
         return t;
     }
 
+    public void setOut(Block out) {this.out = out;}
 }

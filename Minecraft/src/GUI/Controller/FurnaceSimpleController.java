@@ -1,17 +1,16 @@
 package GUI.Controller;
 
-import Data.Blocks.Furnace;
+import GUI.Model.Furnace;
 import Data.Blocks.Interfaces.Block;
-import Data.Blocks.NullBlock;
-import GUI.BlockPane;
-import GUI.FurnacePane;
+import GUI.Visual.BlockPane;
+import GUI.Visual.FurnacePane;
 
 public class FurnaceSimpleController implements SimpleController {
     Furnace f;
     FurnacePane fp;
-    public FurnaceSimpleController(Furnace myFurnace) {
+    public FurnaceSimpleController(Furnace myFurnace,FurnacePane furnacePane) {
         f=myFurnace;
-        fp=new FurnacePane(new NullBlock());
+        fp= furnacePane;
         redraw();
 
     }

@@ -1,4 +1,4 @@
-package Interface;
+package GUI.Model;
 
 import Data.Blocks.BlockExteptions.BlockErrorException;
 import Data.Blocks.Interfaces.Block;
@@ -31,19 +31,19 @@ public class Inventory {
             return new NullBlock();
         }
     }
-    public void display_on_out(){
-        System.out.print("{");
-        for(Block e : inventario){
-            System.out.print(e.display_in_inventory());
-        }
-        System.out.print("}");
-    }
-
     public void  removeItem(int itemIndex){
         inventario.remove(itemIndex);
         this.inventario.sort(new AlphabeticOrder());
     }
     public Iterator<Block> blockIterator(){
         return inventario.listIterator();
+    }
+
+    public ArrayList<Block> getInventario() {
+        return inventario;
+    }
+
+    public void setInventario(ArrayList<Block> inventario) {
+        this.inventario = inventario;
     }
 }

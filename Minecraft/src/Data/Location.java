@@ -1,11 +1,11 @@
-package Interface;
+package Data;
 
-import Interface.Exteptions.WrongCoordinatesException;
+import Data.Exceptions.WrongCoordinatesException;
 
 public class Location {
     private int z;
     private int x;
-    public final static int dimX=8;
+    public final static int dimX=6;
     public final static int dimZ=4;
 
     public Location(int row,int column){

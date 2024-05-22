@@ -2,6 +2,7 @@ package Data.Order;
 
 import Data.Blocks.*;
 import Data.Blocks.Interfaces.Block;
+import GUI.Model.Furnace;
 
 import java.util.Comparator;
 

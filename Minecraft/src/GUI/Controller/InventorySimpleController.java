@@ -1,9 +1,9 @@
 package GUI.Controller;
 
 import Data.Blocks.Interfaces.Block;
-import GUI.BlockPane;
-import GUI.InventoryPane;
-import Interface.Inventory;
+import GUI.Visual.BlockPane;
+import GUI.Visual.InventoryPane;
+import GUI.Model.Inventory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,12 +12,13 @@ public class InventorySimpleController implements SimpleController {
     Inventory i;
     InventoryPane ip;
 
-    public InventorySimpleController(Inventory myInventory){
+    public InventorySimpleController(Inventory myInventory,InventoryPane inventoryPane){
         i=myInventory;
-        ip = new InventoryPane(new ArrayList<Block>());
+        ip = inventoryPane;
     }
     @Override
     public void redraw() {
+        ip.getChildren().clear();
         ArrayList<Block> inventory = new ArrayList<>();
         Iterator<Block> iterator = i.blockIterator() ;
         while (iterator.hasNext()){

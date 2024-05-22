@@ -2,49 +2,38 @@ package GUI;
 
 import Data.Blocks.NullBlock;
 import GUI.Controller.MainSimpleController;
-import Interface.MainView;
+import GUI.Visual.ButtonListPane;
+import GUI.Visual.FurnacePane;
+import GUI.Visual.InventoryPane;
+import GUI.Visual.MapPane;
+import javafx.geometry.Pos;
 import javafx.scene.layout.BorderPane;
 
 public class MainGUI extends BorderPane {
     private MapPane mappa;
     private ButtonListPane buttons;
     private FurnacePane furnace;
-    private MainSimpleController mainController;
+    private InventoryPane invetory;
 
-    public FurnacePane getFurnace() {
-        return furnace;
-    }
+    public InventoryPane getInvetory() {return invetory;}
 
-    public void setFurnace(FurnacePane furnace) {
-        this.furnace = furnace;
-    }
-
-    public ButtonListPane getButtons() {
-        return buttons;
-    }
-
-    public void setButtons(ButtonListPane buttons) {
-        this.buttons = buttons;
-    }
-
-    public MapPane getMappa() {
-        return this.mappa;
-    }
-
-    public void setMappa(MapPane mappa) {
-        this.mappa = mappa;
-    }
+    public FurnacePane getFurnace() {return furnace;}
+    public ButtonListPane getButtons() {return buttons;}
+    public MapPane getMappa() {return this.mappa;}
 
 
-        public MainGUI(){
-            super();
+        public MainGUI(MainSimpleController msc){
+           super();
            this.mappa = new MapPane(false);
            this.mappa.setMaxWidth(300);
-           this.buttons = new ButtonListPane(this);
+           this.buttons = new ButtonListPane(this,msc);
            this.furnace = new FurnacePane(new NullBlock());
-           this.mainController = new MainSimpleController(new MainView());
+           this.invetory = new InventoryPane(msc.getMv().getMyInventory().getInventario());
            super.setLeft(buttons);
+           BorderPane.setAlignment(buttons, Pos.BOTTOM_RIGHT);
            super.setCenter(mappa);
-           super.setLeft(furnace);
+           super.setRight(furnace);
+           super.setBottom(invetory);
+
         }
 }

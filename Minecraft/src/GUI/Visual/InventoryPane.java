@@ -1,4 +1,4 @@
-package GUI;
+package GUI.Visual;
 
 import Data.Blocks.Interfaces.Block;
 import javafx.geometry.Pos;
