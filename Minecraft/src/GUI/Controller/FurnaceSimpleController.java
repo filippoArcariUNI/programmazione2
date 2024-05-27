@@ -1,8 +1,8 @@
 package GUI.Controller;
 
-import GUI.Model.Furnace;
 import Data.Blocks.Interfaces.Block;
-import GUI.Visual.BlockPane;
+import GUI.ClickableBlock.ExternHandler;
+import GUI.Model.Furnace;
 import GUI.Visual.FurnacePane;
 
 public class FurnaceSimpleController implements SimpleController {
@@ -16,9 +16,10 @@ public class FurnaceSimpleController implements SimpleController {
     }
     @Override
     public void redraw() {
-        Block furanceInpt= f.getInput();
-        BlockPane inptPane = fp.getInp();
-        inptPane.changeBlock(furanceInpt);
+        Block furnaceInput= f.getInput();
+        ExternHandler inptPane = fp.getInp();
+        inptPane.changeBlock(furnaceInput);
         fp.setInp(inptPane);
+
     }
 }

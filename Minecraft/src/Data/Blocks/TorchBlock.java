@@ -7,5 +7,6 @@ public class TorchBlock extends AbstractSolidBlock {
         super();
         blockName="Torch Block";
         content='t';
+        durezza = 1;
     }
 }

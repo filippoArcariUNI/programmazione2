@@ -1,9 +1,13 @@
 package GUI.Controller;
 
+import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
-import GUI.MainGUI;
 import Data.Location;
+import GUI.MainGUI;
 import GUI.Model.MainView;
+import GUI.Visual.BlockPane;
+import GUI.Visual.MapPane;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -37,12 +41,16 @@ public class MainSimpleController implements SimpleController{
         this.redraw();
     }
 
-    public void move_into_inventory_from_furnace(){
-        mv.move_into_inventory_from_furnace();
+    public void move_into_inventory_inpt_furnace(){
+        mv.move_into_inventory_from_inpt_furnace();
         this.redraw();
     }
-    public void move_into_furnace_from_inventory(){
-        mv.move_into_furnace_from_inventory(0);
+    public void move_into_inventory_out_furnace(){
+        mv.move_into_inventory_from_out_furnace();
+        this.redraw();
+    }
+    public void move_into_furnace_from_inventory(int index){
+        mv.move_into_furnace_from_inventory(index);
         this.redraw();
     }
     public void pick_up_block(Location l){
@@ -58,6 +66,14 @@ public class MainSimpleController implements SimpleController{
     public void randomBlock(Location l , Block b){
         mv.insertRandomBlock(l,b);
         this.redraw();
+    }
+    public void mineBlock(Location l){
+        BlockPane bp = (BlockPane) MapPane.getElementAt(l);
+        if (((AbstractSolidBlock)bp.getBlock()).getDurezza() <= 0){
+            this.pick_up_block(l);
+        }else{
+            bp.decreaseDurezza();
+        }
     }
 
 
@@ -94,5 +110,6 @@ public class MainSimpleController implements SimpleController{
     public InventorySimpleController getIc() {
         return ic;
     }
+
 
 }

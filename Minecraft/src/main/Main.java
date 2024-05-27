@@ -18,9 +18,8 @@ public class  Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-//        Lab 5  -> https://didatticaonline.unitn.it/dol/pluginfile.php/1810388/mod_resource/content/1/mc%235.txt
-//        1.6
-//
+//        https://didatticaonline.unitn.it/dol/pluginfile.php/1810389/mod_resource/content/1/mc%236.txt
+        //TODO domandare perchè non entra nell' anonimus handler
     }
     public static void main(String[] args) {
         launch(args);

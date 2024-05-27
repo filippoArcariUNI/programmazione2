@@ -13,6 +13,7 @@ public class SandBlock extends AbstractBlock implements SmeltableBlocks,Destroye
         this.fall_through=false;
         this.falls_with_gravity=true;
         this.blockName="Sand Block";
+        durezza = 2;
     }
 
     public GlassBlock smelt(){

@@ -6,6 +6,8 @@ public abstract class AbstractBlock implements Block {
     protected boolean falls_with_gravity;
     protected boolean fall_through;
     protected String blockName;
+    protected int durezza;
+
 
     protected boolean pickable;
 
@@ -23,6 +25,7 @@ public abstract class AbstractBlock implements Block {
         return this.fall_through;
     }
     public boolean isPickable() {return pickable;}
+    public int getDurezza(){return  durezza;};
     @Override
     public String getBlockName() {
         return this.blockName;

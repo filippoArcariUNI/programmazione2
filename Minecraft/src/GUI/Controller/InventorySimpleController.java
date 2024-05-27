@@ -1,9 +1,9 @@
 package GUI.Controller;
 
 import Data.Blocks.Interfaces.Block;
+import GUI.Model.Inventory;
 import GUI.Visual.BlockPane;
 import GUI.Visual.InventoryPane;
-import GUI.Model.Inventory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,8 +21,10 @@ public class InventorySimpleController implements SimpleController {
         ip.getChildren().clear();
         ArrayList<Block> inventory = new ArrayList<>();
         Iterator<Block> iterator = i.blockIterator() ;
+        int  i =0 ;
         while (iterator.hasNext()){
-            ip.getChildren().add(new BlockPane(iterator.next()));
+            ip.getChildren().add(new BlockPane(iterator.next(),i));
+            i++;
         }
     }
 

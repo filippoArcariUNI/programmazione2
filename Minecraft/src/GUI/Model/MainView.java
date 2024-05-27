@@ -31,7 +31,9 @@ public class MainView {
     public void smelt(){
     myFurnace.smelt();
     Block b= myFurnace.getOut();
-    myInventory.add_block(b);
+    if (!(b instanceof NullBlock)){
+        myInventory.add_block(b);
+    }
 }
 
     public Furnace getMyFurnace() {
@@ -64,11 +66,18 @@ public class MainView {
         }
 
     }
-    public void move_into_inventory_from_furnace(){
+    public void move_into_inventory_from_inpt_furnace(){
         if(!(myFurnace.getInput() instanceof NullBlock)){
             Block t = myFurnace.getInput();
             myInventory.add_block(t);
             myFurnace.setInput(new BlockFactory().null_block());
+        }
+    }
+    public void move_into_inventory_from_out_furnace(){
+        if(!(myFurnace.getOut() instanceof NullBlock)){
+            Block t = myFurnace.getOut();
+            myInventory.add_block(t);
+            myFurnace.setOut(new BlockFactory().null_block());
         }
     }
 

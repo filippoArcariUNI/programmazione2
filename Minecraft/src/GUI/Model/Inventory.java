@@ -1,5 +1,6 @@
 package GUI.Model;
 
+import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.BlockExteptions.BlockErrorException;
 import Data.Blocks.Interfaces.Block;
 import Data.Blocks.Interfaces.SmeltableBlocks;
@@ -13,7 +14,7 @@ public class Inventory {
     private ArrayList<Block> inventario = new ArrayList<>();
 
     public void add_block(Block b){
-        this.inventario.add(b);
+        this.inventario.add((AbstractSolidBlock) b);
         this.inventario.sort(new AlphabeticOrder());
     }
     private boolean is_smeltable(int index) throws BlockErrorException{
@@ -42,6 +43,7 @@ public class Inventory {
     public ArrayList<Block> getInventario() {
         return inventario;
     }
+
 
     public void setInventario(ArrayList<Block> inventario) {
         this.inventario = inventario;

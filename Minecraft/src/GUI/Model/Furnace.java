@@ -24,9 +24,7 @@ public class Furnace extends AbstractSolidBlock {
         return this.out;
     }
 
-//    public void  display_on_out(){
-//        System.out.println("|| " + this.input.getContent() +"--> "+ this.out.getContent() +"||");
-//    }
+
     public void smelt(){
         this.out=this.input.smelt();
         this.input=bf.null_block();

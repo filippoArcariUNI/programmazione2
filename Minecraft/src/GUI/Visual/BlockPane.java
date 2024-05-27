@@ -1,6 +1,7 @@
 package GUI.Visual;
 
 import Data.Blocks.*;
+import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
@@ -15,6 +16,7 @@ public class BlockPane extends StackPane {
     private Block block;
     private Rectangle sfondo;
     private Text testo;
+    private int durezza;
     public static final int DIM_SQUARE = 50;
     private static final String FONT_NAME = "Verdana";
     private static final int FONT_SIZE = 18;
@@ -23,12 +25,25 @@ public class BlockPane extends StackPane {
     private static final Color FONT_FILL = Color.BLACK;
     private static final Color FONT_BORDER = Color.BLACK;
 
-    public BlockPane(Block b) {
+    public void decreaseDurezza(){
+        this.durezza-=1;
+    }
+
+    public Block getBlock() {
+        return block;
+    }
+
+    public void resettaDurezza(){
+        this.durezza = ((AbstractSolidBlock)this.block).getDurezza();
+    }
+    public BlockPane(Block b, int durezza) {
         super();
         this.block = b;
+        this.durezza = durezza;
         this.initialise();
     }
     private void initialise(){
+        super.getChildren().clear();
         sfondo = new Rectangle(DIM_SQUARE,DIM_SQUARE);
         testo = new Text(this.block.getBlockName());
         sfondo.setFill(this.colorSelector(this.block));
@@ -40,6 +55,7 @@ public class BlockPane extends StackPane {
         super.setAlignment(Pos.CENTER);
         Tooltip t = new Tooltip(this.block.toString());
         Tooltip.install(this,t);
+        super.setOpacity((double) durezza /((AbstractSolidBlock)this.block).getDurezza());
     }
     public void changeBlock(Block b){
         this.block = b;
@@ -65,9 +81,6 @@ public class BlockPane extends StackPane {
         }else {
             return Color.BLACK;
         }
-
-
-
 
     }
 }
