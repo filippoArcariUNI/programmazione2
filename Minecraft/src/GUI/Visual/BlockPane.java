@@ -1,8 +1,8 @@
 package GUI.Visual;
 
 import Data.Blocks.*;
-import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
+import Data.Blocks.Interfaces.PickableBlocks;
 import javafx.geometry.Pos;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
@@ -27,14 +27,16 @@ public class BlockPane extends StackPane {
 
     public void decreaseDurezza(){
         this.durezza-=1;
+        initialise();
     }
 
-    public Block getBlock() {
-        return block;
+    public PickableBlocks getBlock() {
+        return (PickableBlocks) block;
     }
 
     public void resettaDurezza(){
-        this.durezza = ((AbstractSolidBlock)this.block).getDurezza();
+        this.durezza = ((PickableBlocks)this.block).getDurezza();
+        initialise();
     }
     public BlockPane(Block b, int durezza) {
         super();
@@ -42,6 +44,18 @@ public class BlockPane extends StackPane {
         this.durezza = durezza;
         this.initialise();
     }
+
+    public void setDurezza(int durezza) {
+        this.durezza = durezza;
+        initialise();
+    }
+
+    public BlockPane(Block b) {
+        super();
+        this.block = b;
+        this.initialise();
+    }
+
     private void initialise(){
         super.getChildren().clear();
         sfondo = new Rectangle(DIM_SQUARE,DIM_SQUARE);
@@ -55,12 +69,23 @@ public class BlockPane extends StackPane {
         super.setAlignment(Pos.CENTER);
         Tooltip t = new Tooltip(this.block.toString());
         Tooltip.install(this,t);
-        super.setOpacity((double) durezza /((AbstractSolidBlock)this.block).getDurezza());
+        if(this.block.isPickable()){
+            super.setOpacity((double) this.durezza / ((PickableBlocks)this.block).getDurezza());
+        }else{
+            super.setOpacity(1);
+        }
     }
     public void changeBlock(Block b){
-        this.block = b;
-        sfondo.setFill(this.colorSelector(this.block));
-        testo.setText(b.getBlockName());
+        if (this.block != b){
+            this.block = b;
+            sfondo.setFill(this.colorSelector(this.block));
+            testo.setText(b.getBlockName());
+            if (b.isPickable()) {
+                this.durezza = ((PickableBlocks) b).getDurezza();
+            }
+            initialise();
+        }
+
     }
 
     private Color colorSelector(Block b){
@@ -79,8 +104,10 @@ public class BlockPane extends StackPane {
         }else if ( b instanceof GlassBlock) {
             return Color.ALICEBLUE;
         }else {
-            return Color.BLACK;
+            return Color.GREY;
         }
 
     }
+
+    public int getDurezza() {return durezza;}
 }

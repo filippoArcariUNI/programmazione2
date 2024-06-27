@@ -1,12 +1,13 @@
 package GUI.Handler.InventorySorting;
 
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
+import GUI.Controller.Simple.MainSimpleController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
 public class InventroySortingAction extends InventorySorting implements EventHandler<ActionEvent>{
 
-    public InventroySortingAction(MainSimpleController mc) {
+    public InventroySortingAction(MainControllerInterface mc) {
         super(mc);
     }
     @Override

@@ -2,9 +2,10 @@ package Data.Blocks;
 
 import Data.Blocks.AbstractClass.AbstractBlock;
 import Data.Blocks.Interfaces.DestroyedByTorch;
+import Data.Blocks.Interfaces.PickableBlocks;
 import Data.Blocks.Interfaces.SmeltableBlocks;
 
-public class SandBlock extends AbstractBlock implements SmeltableBlocks,DestroyedByTorch{
+public class SandBlock extends AbstractBlock implements SmeltableBlocks,DestroyedByTorch,PickableBlocks {
 
     public SandBlock(){
         super();
@@ -13,7 +14,7 @@ public class SandBlock extends AbstractBlock implements SmeltableBlocks,Destroye
         this.fall_through=false;
         this.falls_with_gravity=true;
         this.blockName="Sand Block";
-        durezza = 2;
+        this.durezza = 2;
     }
 
     public GlassBlock smelt(){

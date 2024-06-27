@@ -9,7 +9,10 @@ import javafx.scene.input.MouseEvent;
 
 public class ExternHandler extends BlockPane{
     public ExternHandler(Block b, GenericHandler el) {
-        super(b,((AbstractSolidBlock)b).getDurezza());
+        super(b);
+        if (b instanceof AbstractSolidBlock){
+            setDurezza(((AbstractSolidBlock)b).getDurezza());
+        }
         this.setOnMouseClicked((EventHandler<MouseEvent>) el);
     }
 }

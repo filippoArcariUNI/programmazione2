@@ -2,13 +2,13 @@ package GUI.Handler;
 
 import Data.BlockFactory;
 import Data.Location;
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 
 import java.util.Random;
 
 public abstract class GenericHandler {
-    protected MainSimpleController mainSimpleController;
-    protected GenericHandler(MainSimpleController msc){
+    protected MainControllerInterface mainSimpleController;
+    protected GenericHandler(MainControllerInterface msc){
         this.mainSimpleController=msc;
     }
     protected void addBlock(){

@@ -14,6 +14,7 @@ import GUI.Printer.FurnacePrinter;
 import GUI.Printer.InventoryPrinter;
 import GUI.Printer.MainPrinter;
 import GUI.Printer.MapPrinter;
+import GUI.Visual.BlockPane;
 
 public class MainView {
     private Map myMap;
@@ -30,11 +31,7 @@ public class MainView {
 
     public void smelt(){
     myFurnace.smelt();
-    Block b= myFurnace.getOut();
-    if (!(b instanceof NullBlock)){
-        myInventory.add_block(b);
     }
-}
 
     public Furnace getMyFurnace() {
         return myFurnace;
@@ -58,9 +55,11 @@ public class MainView {
     }
    public void move_into_furnace_from_inventory(int indexInInventory){
         try {
-            myFurnace.setInput((SmeltableBlocks)myInventory.get_smeltable_item(indexInInventory));
-            myFurnace.setOut(myFurnace.getInput().smelt());
-            myInventory.removeItem(indexInInventory);
+            SmeltableBlocks b =  myInventory.get_smeltable_item(indexInInventory);
+            if (b != null){
+                myFurnace.setInput(b);
+                myInventory.removeItem(indexInInventory);
+            }
         }catch (BlockErrorException e){
             System.out.println(e.toString());
         }
@@ -106,6 +105,17 @@ public class MainView {
             myMap.insert_at_coords(l,b);
         } catch (WrongCoordinatesException e) {
             throw new RuntimeException(e);
+        }
+    }
+    public void mineBlock(Location l,BlockPane bp,Boolean hasPickaxe){
+
+        if (hasPickaxe){
+            bp.setDurezza(bp.getDurezza()-2);
+        }else{
+            bp.setDurezza(bp.getDurezza()-1);
+        }
+        if (bp.getDurezza()<=0){
+            this.pick_up_block(l);
         }
     }
 }

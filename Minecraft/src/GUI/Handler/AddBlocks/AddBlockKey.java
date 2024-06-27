@@ -1,13 +1,13 @@
 package GUI.Handler.AddBlocks;
 
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import GUI.Handler.GenericHandler;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
 public class AddBlockKey extends GenericHandler implements EventHandler<KeyEvent> {
     private static int NUMBLOCCHI = 10;
-    public AddBlockKey(MainSimpleController msc) {
+    public AddBlockKey(MainControllerInterface msc) {
         super(msc);
     }
 

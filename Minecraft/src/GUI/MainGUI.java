@@ -1,7 +1,7 @@
 package GUI;
 
 import Data.Blocks.NullBlock;
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import GUI.Handler.AddBlocks.AddBlockKey;
 import GUI.Handler.InventorySorting.InventorySotringKeyPress;
 import GUI.Visual.ButtonListPane;
@@ -25,7 +25,7 @@ public class MainGUI extends BorderPane {
     public MapPane getMappa() {return this.mappa;}
 
 
-        public MainGUI(MainSimpleController msc){
+        public MainGUI(MainControllerInterface msc){
            super();
            this.mappa = new MapPane(false,msc);
            this.mappa.setMaxWidth(300);

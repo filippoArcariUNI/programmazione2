@@ -1,30 +1,32 @@
-package GUI.Controller;
+package GUI.Controller.Simple;
 
-import Data.Blocks.AbstractClass.AbstractSolidBlock;
 import Data.Blocks.Interfaces.Block;
 import Data.Location;
+import GUI.ClickableBlock.ExternHandler;
+import GUI.Controller.MainControllerInterface;
 import GUI.MainGUI;
 import GUI.Model.MainView;
-import GUI.Visual.BlockPane;
-import GUI.Visual.MapPane;
+import GUI.Visual.ButtonListPane;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MainSimpleController implements SimpleController{
+public class MainSimpleController implements SimpleController,MainControllerInterface{
     MainView mv;
     MainGUI mg;
     Collection <SimpleController> lstController;
     FurnaceSimpleController  fc;
     MapSimpleController mc;
     InventorySimpleController ic;
+    ButtonListPane buttonListPane;
     public MainSimpleController(MainView mainView){
         mv = mainView;
-        mg = new MainGUI(this);
+        mg = new MainGUI((MainControllerInterface) this);
         lstController = new ArrayList<>();
         ic = new InventorySimpleController(mainView.getMyInventory(),mg.getInvetory());
         mc = new MapSimpleController(mainView.getMyMap(),mg.getMappa());
         fc = new FurnaceSimpleController(mainView.getMyFurnace(),mg.getFurnace());
+        buttonListPane= mg.getButtons();
 
         lstController.add(ic);
         lstController.add(mc);
@@ -68,12 +70,9 @@ public class MainSimpleController implements SimpleController{
         this.redraw();
     }
     public void mineBlock(Location l){
-        BlockPane bp = (BlockPane) MapPane.getElementAt(l);
-        if (((AbstractSolidBlock)bp.getBlock()).getDurezza() <= 0){
-            this.pick_up_block(l);
-        }else{
-            bp.decreaseDurezza();
-        }
+        ExternHandler bp = this.mg.getMappa().get_block_at_cord(l);
+        mv.mineBlock(l,bp,this.buttonListPane.getCheckBoxPickaxe().isSelected());
+        this.redraw();
     }
 
 
@@ -100,8 +99,6 @@ public class MainSimpleController implements SimpleController{
     public FurnaceSimpleController getFc() {
         return fc;
     }
-
-
 
     public MapSimpleController getMc() {
         return mc;

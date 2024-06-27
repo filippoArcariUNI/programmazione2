@@ -1,6 +1,8 @@
 package Data.Blocks.AbstractClass;
 
-public abstract class AbstractSolidBlock extends AbstractBlock {
+import Data.Blocks.Interfaces.PickableBlocks;
+
+public abstract class AbstractSolidBlock extends AbstractBlock implements PickableBlocks {
     public AbstractSolidBlock(){
         fall_through=false;
         falls_with_gravity=false;

@@ -1,10 +1,10 @@
-package GUI.Controller;
+package GUI.Controller.Simple;
 
 import Data.Blocks.Interfaces.Block;
-import GUI.Visual.BlockPane;
-import GUI.Visual.MapPane;
 import Data.Location;
+import GUI.ClickableBlock.ExternHandler;
 import GUI.Model.Map;
+import GUI.Visual.MapPane;
 
 public class MapSimpleController implements SimpleController{
     MapPane mp;
@@ -19,9 +19,10 @@ public class MapSimpleController implements SimpleController{
         for (int i = 0; i < Location.dimZ; i++) {
             for (int j = 0; j < Location.dimX; j++) {
                 Location l = new Location(i,j);
-                BlockPane currentBp = this.mp.get_block_at_cord(l);
+                ExternHandler currentBp = this.mp.get_block_at_cord(l);
                 Block currentBlock = this.m.getBlock(l);
-                currentBp.changeBlock(currentBlock);
+                this.mp.setCell(l,currentBlock);
+
             }
 
         }

@@ -1,12 +1,12 @@
 package GUI.Handler;
 
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class MoveFromFurnaceToInventory extends GenericHandler implements EventHandler<MouseEvent> {
     private boolean isInput;
-    public MoveFromFurnaceToInventory(MainSimpleController msc, boolean isInpt){
+    public MoveFromFurnaceToInventory(MainControllerInterface msc, boolean isInpt){
         super(msc);
         this.isInput=isInpt;
     }

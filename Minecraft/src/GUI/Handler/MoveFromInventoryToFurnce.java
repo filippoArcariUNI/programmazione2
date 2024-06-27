@@ -1,12 +1,12 @@
 package GUI.Handler;
 
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class MoveFromInventoryToFurnce extends GenericHandler implements EventHandler<MouseEvent> {
     int index;
-    public MoveFromInventoryToFurnce(MainSimpleController msc, int i) {
+    public MoveFromInventoryToFurnce(MainControllerInterface msc, int i) {
         super(msc);
         this.index=i;
     }

@@ -1,4 +1,5 @@
 package Data.Blocks.AbstractClass;
+
 import Data.Blocks.Interfaces.Block;
 
 public abstract class AbstractBlock implements Block {
@@ -7,8 +8,6 @@ public abstract class AbstractBlock implements Block {
     protected boolean fall_through;
     protected String blockName;
     protected int durezza;
-
-
     protected boolean pickable;
 
 

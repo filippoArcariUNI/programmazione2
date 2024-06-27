@@ -2,7 +2,7 @@ package GUI.Visual;
 
 import Data.Blocks.Interfaces.SmeltableBlocks;
 import GUI.ClickableBlock.ExternHandler;
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import GUI.Handler.MoveFromFurnaceToInventory;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
@@ -20,7 +20,8 @@ public class FurnacePane extends VBox {
     public ExternHandler getOut() {
         return out;
     }
-    public FurnacePane(SmeltableBlocks inpt, MainSimpleController msc){
+
+    public FurnacePane(SmeltableBlocks inpt, MainControllerInterface msc){
         Text intro = new Text("Furnace");
         Text to = new Text("-->");
         to.setTextAlignment(TextAlignment.CENTER);

@@ -1,11 +1,11 @@
 package GUI.Handler.InventorySorting;
 
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import GUI.Handler.GenericHandler;
 
 public abstract class InventorySorting extends GenericHandler {
     boolean switchInventorySorting=true;
-    public InventorySorting(MainSimpleController mc){
+    public InventorySorting(MainControllerInterface mc){
         super(mc);
     }
     protected void orderInvetory(){

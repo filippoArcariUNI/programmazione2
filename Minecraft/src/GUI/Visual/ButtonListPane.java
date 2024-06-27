@@ -2,20 +2,24 @@ package GUI.Visual;
 
 import Data.Blocks.SandBlock;
 import Data.Location;
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import GUI.Handler.AddBlocks.AddBlockAction;
 import GUI.Handler.InventorySorting.InventroySortingAction;
 import GUI.MainGUI;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Spinner;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class ButtonListPane extends VBox{
     private MainGUI mg;
     private Button btn;
-    MainSimpleController controllerMain;
-    public ButtonListPane(MainGUI m, MainSimpleController msc){
+    private CheckBox checkBoxPickaxe;
+    MainControllerInterface controllerMain;
+    public ButtonListPane(MainGUI m, MainControllerInterface msc){
         this.mg = m;
         this.controllerMain = msc;
         testButton();
@@ -25,6 +29,19 @@ public class ButtonListPane extends VBox{
         move_into_furnace();
         move_back();
         inventory_sorting();
+        addPickaxe();
+    }
+
+    public CheckBox getCheckBoxPickaxe() {return checkBoxPickaxe;}
+
+    private void addPickaxe() {
+        this.checkBoxPickaxe = new CheckBox();
+        Image img = new Image("file:src/Data/Img/pickaxe.png");
+        ImageView view = new ImageView(img);
+        view.setFitWidth(50);
+        view.setPreserveRatio(true);
+        checkBoxPickaxe.setGraphic(view);
+        super.getChildren().add(checkBoxPickaxe);
     }
 
     private void move_into_furnace() {
@@ -75,7 +92,7 @@ public class ButtonListPane extends VBox{
         btn.setText("prova");
         btn.setOnAction(e->{
         MapPane mp= this.mg.getMappa();
-        BlockPane selected = (BlockPane) MapPane.getElementAt(mp,new Location(0,0));
+            BlockPane selected = controllerMain.getMg().getMappa().get_block_at_cord(new Location(0,0));
             assert selected != null;
             selected.changeBlock(new SandBlock());
         });

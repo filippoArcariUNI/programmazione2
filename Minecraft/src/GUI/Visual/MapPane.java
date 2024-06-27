@@ -5,7 +5,7 @@ import Data.Blocks.Interfaces.Block;
 import Data.Exceptions.WrongCoordinatesException;
 import Data.Location;
 import GUI.ClickableBlock.ExternHandler;
-import GUI.Controller.MainSimpleController;
+import GUI.Controller.MainControllerInterface;
 import GUI.Handler.MoveFromMaptoInventory;
 import GUI.Model.MainView;
 import GUI.Model.Map;
@@ -14,9 +14,9 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
 public class MapPane extends GridPane{
-    private static GridPane gp;
-    private MainSimpleController mainSimpleController;
-    public MapPane(MainSimpleController msc){
+    private GridPane gp;
+    private MainControllerInterface mainSimpleController;
+    public MapPane(MainControllerInterface msc){
         gp=new GridPane();
         this.mainSimpleController = msc;
         try {
@@ -26,7 +26,7 @@ public class MapPane extends GridPane{
         }
         super.setAlignment(Pos.CENTER);
     }
-    public MapPane(boolean allAir, MainSimpleController msc){
+    public MapPane(boolean allAir, MainControllerInterface msc){
         this(msc);
         if(!allAir){
             try {
@@ -58,12 +58,12 @@ public class MapPane extends GridPane{
 
     }
 
-    public BlockPane get_block_at_cord(Location l){
-        return (BlockPane) getElementAt(this,l);
+    public ExternHandler get_block_at_cord(Location l){
+        return (ExternHandler) getElementAt(this,l);
     }
 
     public void setCell(Location l, Block b){
-        BlockPane selected = this.get_block_at_cord(l);
+        ExternHandler selected = this.get_block_at_cord(l);
         if(selected == null){
             super.add(new ExternHandler(b,new MoveFromMaptoInventory(l,this.mainSimpleController)),l.getX(),l.getZ());
         }else{
@@ -72,7 +72,7 @@ public class MapPane extends GridPane{
     }
 
 
-    public static Node getElementAt(GridPane gp, Location l ) {
+    private Node getElementAt(GridPane gp, Location l ) {
         for (Node x :gp.getChildren()) {
             if ((GridPane.getRowIndex(x) == l.getZ()) && (GridPane.getColumnIndex(x) == l.getX())) {
                 return x;
@@ -80,12 +80,6 @@ public class MapPane extends GridPane{
         }
         return null;
     }
-    public static Node getElementAt(Location l) {
-        for (Node x :gp.getChildren()) {
-            if ((GridPane.getRowIndex(x) == l.getZ()) && (GridPane.getColumnIndex(x) == l.getX())) {
-                return x;
-            }
-        }
-        return null;
-    }
+
+    public GridPane getGp() {return gp;}
 }
