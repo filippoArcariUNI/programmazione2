@@ -22,9 +22,7 @@ public abstract class ARicetta implements Ricetta{
 
     @Override
     public int getsconto() {
-        if (ripetibilita == 0){
-            return 0;
-        }
+
         return sconto;
     }
 

@@ -41,7 +41,7 @@ public class Ricette extends VBox{
         {
             Button btnRicetta = new Button();
             String testo = "Ricetta per: " + ricetta.getNome();
-            if(ricetta.getScadenza().before(new Date())){
+            if(ricetta.getScadenza().after(new Date())){
                 String s = "\n Valida fino al:" + ricetta.getScadenza().toString();
                 testo =testo +s;
             }else{
